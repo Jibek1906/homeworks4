@@ -1,6 +1,34 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from datetime import datetime
+from . import models
+
+#Список книг
+def books_list(request):
+    if request.method == 'GET':
+        books_list = models.Books.objects.all().order_by('-id')
+        context = {'books_list': books_list}
+        return render(request, template_name='book.html', context=context)
+
+def book_detail(request, id):
+    if request.method == 'GET':
+        book_id = get_object_or_404(models.Books, id=id)
+        context = {'book_id': book_id}
+        return render(request, template_name='book_detail.html', context=context)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def about_me(request):
     if request.method == 'GET':
