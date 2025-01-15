@@ -1,0 +1,13 @@
+{% load static %} {% include 'components/header.html' %}
+<link rel="stylesheet" href="{% static 'css/book_detail.css' %}" />
+<link rel="stylesheet" href="{% static 'css/book.css' %}" />
+
+<div class="container mt-4">
+  <h2>Добавить комментарий</h2>
+  <form action="/create_review/" method="POST" enctype="multipart/form-data">
+    {% csrf_token %} {{ form.as_p }}
+    <button type="submit">Добавить комментарий</button>
+  </form>
+</div>
+
+{% include 'components/footer.html' %}

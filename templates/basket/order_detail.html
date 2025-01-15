@@ -1,0 +1,15 @@
+{% load static %} {% include 'components/header.html' %}
+<link rel="stylesheet" href="{% static 'css/basket.css' %}" />
+<body>
+  <div class="container">
+    <h1>Название книги: {{ order_id.book }}</h1>
+    <p>Имя заказчика: {{ order_id.name }}</p>
+    <p>Телефон: {{ order_id.number }}</p>
+    <p>email: {{ order_id.mail }}</p>
+    <p>Адрес: {{ order_id.delivery_address }}</p>
+    <p>Способ доставки: {{ order_id.delivery_choice }}</p>
+    <p>Способ оплаты: {{ order_id.payment_method }}</p>
+    <p>Дата заказа: {{ order_id.ordered_at }}</p>
+  </div>
+</body>
+{% include 'components/footer.html' %}

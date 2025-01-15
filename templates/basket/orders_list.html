@@ -1,0 +1,17 @@
+{% load static %} {% include 'components/header.html' %}
+<link rel="stylesheet" href="{% static 'css/basket.css' %}" />
+<body>
+  <ul>
+    {% for i in orders_list %}
+    <li>
+      <h1>{{ i.book }}</h1>
+      <p>{{ i.name }}</p>
+      <p>{{ i.ordered_at }}</p>
+      <a href="/orders_list/{{ i.id }}/"><button>Подробнее</button></a>
+      <a href="/orders_list/{{ i.id }}/delete/"><button>Удалить</button></a>
+      <a href="/orders_list/{{ i.id }}/update/"><button>Изменить</button></a>
+    </li>
+    {% endfor %}
+  </ul>
+</body>
+{% include 'components/footer.html' %}
