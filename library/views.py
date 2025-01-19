@@ -2,28 +2,48 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from datetime import datetime
 from . import models, forms
+from django.views import generic
+from django.urls import reverse
+
+class SearchView(generic.ListView):
+    template_name = 'book.html'
+    context_object_name = 'books_list'
+
+    def get_queryset(self):
+        return models.Books.objects.filter(title__icontains=self.request.GET.get('q'))
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['q'] = self.request.GET.get('q')
+        return context
 
 #Список книг
-def books_list(request):
-    if request.method == 'GET':
-        books_list = models.Books.objects.all().order_by('-id')
-        context = {'books_list': books_list}
-        return render(request, template_name='book.html', context=context)
+class BooksListView(generic.ListView):
+    template_name = 'book.html'
+    context_object_name = 'books_list'
+    model = models.Books
 
-def book_detail(request, id):
-    if request.method == 'GET':
-        book_id = get_object_or_404(models.Books, id=id)
-        context = {'book_id': book_id}
-        return render(request, template_name='book_detail.html', context=context)
+    def get_queryset(self):
+        return self.model.objects.all().order_by('-id')
 
-def create_review_view(request):
-    if request.method == 'POST':
-        form = forms.ReviewForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-    else:
-        form = forms.ReviewForm()
-    return render(request, template_name='create_review.html', context = {'form': form})
+class BookDetailView(generic.DetailView):
+    template_name = 'book_detail.html'
+    context_object_name = 'book_id'
+
+    def get_object(self, **kwargs):
+        book_id = self.kwargs.get('id')
+        return get_object_or_404(models.Books, id=book_id)
+
+class CreateReviewView(generic.CreateView):
+    template_name = 'create_review.html'
+    form_class = forms.ReviewForm
+
+    def get_success_url(self):
+        return reverse('book_detail', kwargs={'id': self.object.reviews_choice.id})
+
+    def form_valid(self, form):
+        print(form.cleaned_data)
+        return super(CreateReviewView, self).form_valid(form=form)
 
 
 

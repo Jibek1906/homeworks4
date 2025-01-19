@@ -1,0 +1,10 @@
+{% load static %} {% include 'components/header.html' %}
+<link rel="stylesheet" href="{% static 'css/basket.css' %}" />
+<body>
+  <h1>Вы уверены, что хотите отменить заказ?</h1>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <button type="submit">Да</button>
+  </form>
+</body>
+{% include 'components/footer.html' %}
