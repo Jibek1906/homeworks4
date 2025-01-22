@@ -8,6 +8,7 @@ urlpatterns = [
     path('', include('library.urls')),
     path('', include('hashtags.urls')),
     path('', include('basket.urls')),
+    path('', include('parser_petshop.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL,

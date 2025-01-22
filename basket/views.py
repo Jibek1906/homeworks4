@@ -22,14 +22,13 @@ class OrdersListView(generic.ListView):
 class OrderDetailView(generic.DetailView):
     template_name = 'basket/order_detail.html'
     context_object_name = 'order_id'
-    model = models.BasketModel
 
     def get_object(self, **kwargs):
         order_id = self.kwargs.get('id')
         return get_object_or_404(models.BasketModel, id=order_id)
 
 class UpdateOrderView(generic.UpdateView):
-    template_name = 'basket/order_update.html'
+    template_name = 'basket/orders_update.html'
     form_class = forms.BasketForm
     success_url = '/orders_list/'
 
