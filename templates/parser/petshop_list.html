@@ -1,7 +1,7 @@
 {% load static %} {% include 'components/header.html' %}
 <link rel="stylesheet" href="{% static 'css/basket.css' %}" />
-<h1>Спарсенные книги</h1>
+<h1>Спарсенные товары</h1>
 {% for i in petshop_list %}
 <h2>{{ i.title }}</h2>
-<a href="{{ i.href }}">Перейти ко книге</a>
+<a href="{{ i.href }}">Перейти по ссылке</a>
 {% endfor %} {% include 'components/footer.html' %}
