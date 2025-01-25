@@ -1,9 +1,12 @@
 from pathlib import Path
+from . import admin_panel
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+JAZZMIN_SETTINGS = admin_panel.JAZZMIN_SETTINGS
+JAZZMIN_UI_TWEAKS = admin_panel.JAZZMIN_UI_TWEAKS
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -19,6 +22,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -29,6 +33,7 @@ INSTALLED_APPS = [
     'hashtags',
     'basket',
     'parser_petshop',
+    'hiring',
 ]
 
 MIDDLEWARE = [
@@ -39,6 +44,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'hiring.middleware.WorkExperienceMiddleware',
 ]
 
 ROOT_URLCONF = 'GEEKS_Library.urls'

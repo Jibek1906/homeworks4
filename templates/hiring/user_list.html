@@ -1,0 +1,19 @@
+{% load static %}
+
+<ol>
+  {% for i in user %}
+  <li>
+    <p>{{ i.username }}</p>
+    <p>{{ i.experience }}</p>
+    {% if i.salary %}
+    <p>Ваша зарплата будет составлять - {{ i.salary }}</p>
+    {% else %}
+    <p>Зарплата неизвестна</p>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ol>
+<form action="{% url 'hiring:login' %}" method="POST">
+  {% csrf_token %}
+  <button type="submit">Выйти из аккаунта</button>
+</form>
