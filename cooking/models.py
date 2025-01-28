@@ -13,12 +13,12 @@ class RecipeModel(models.Model):
 
 class IngredientModel(models.Model):
     Unit_Of_Measurement = (
-        ('грамм', 'грамм'),
-        ('килограмм', 'килограмм'),
-        ('миллилитр', 'миллилитр'),
-        ('литр', 'литр'),
-        ('штук', 'штук'),
-    )
+        ('грамм', 'г'),
+        ('килограмм', 'кг'),
+        ('миллилитр', 'мл'),
+        ('литр', 'л'),
+        ('штук', 'шт'),
+        )
     name = models.CharField(max_length=100, verbose_name='название ингридиента')
     quantity = models.PositiveIntegerField(verbose_name='количество')
     unit = models.CharField(max_length=100, choices=Unit_Of_Measurement, verbose_name='единица измерения')
