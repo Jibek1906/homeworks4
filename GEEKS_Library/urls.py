@@ -10,6 +10,7 @@ urlpatterns = [
     path('', include('basket.urls')),
     path('', include('parser_petshop.urls')),
     path('', include('hiring.urls')),
+    path('', include('cooking.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL,

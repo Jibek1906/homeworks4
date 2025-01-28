@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'basket',
     'parser_petshop',
     'hiring',
+    'cooking',
 ]
 
 MIDDLEWARE = [

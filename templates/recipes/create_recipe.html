@@ -1,0 +1,7 @@
+{% load static %}
+
+<h1>{% if object %}Редактировать рецепт{% else %}Добавить рецепт{% endif %}</h1>
+<form method="post">
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit">Сохранить</button>
+</form>

@@ -1,0 +1,17 @@
+{% load static %}
+
+<h1>{{ recipe.title }}</h1>
+<p>{{ recipe.description }}</p>
+
+<h2>Ингредиенты:</h2>
+<ul>
+  {% for ingredient in recipe.ingredients.all %}
+  <li>
+    {{ ingredient.name }}: {{ ingredient.quantity }}
+    {{ingredient.get_unit_display }}
+  </li>
+  {% endfor %}
+</ul>
+
+<a href="{% url 'add_ingredient' recipe_id=recipe.id %}">Добавить ингредиент</a>
+<a href="{% url 'recipes_list' %}">Назад к списку рецептов</a>

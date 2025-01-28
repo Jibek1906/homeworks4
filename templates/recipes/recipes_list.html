@@ -1,0 +1,14 @@
+{% load static %}
+
+<h1>Список рецептов</h1>
+<a href="{% url 'add_recipe' %}">Добавить рецепт</a>
+<ul>
+  {% for recipe in recipes_list %}
+  <li>
+    {{ recipe.title }}
+    <a href="{% url 'recipe_detail' recipe.id %}">Просмотреть</a>
+    <a href="{% url 'update_recipe' recipe.id %}">Редактировать</a>
+    <a href="{% url 'delete_recipe' recipe.id %}">Удалить</a>
+  </li>
+  {% endfor %}
+</ul>
